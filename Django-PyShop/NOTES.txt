@@ -1,0 +1,74 @@
+TERMINAL: "django-admin startproject (project name) ."
+as command to initialize django and the files
+
+INSIDE PROJECT FOLDER:
+__init__: folder is a package
+settings: define settings for application
+urls: define what user see when go to different url in website
+wsgi: web server gateway interface
+
+manage.py: Manage django projects
+
+TERMINAL: python3 manage.py runserver
+to start development server of django locally
+
+When developing, want to split the django project
+up to different parts and applications so easier to manage
+
+adding an app to the shop:
+TERMINAL: python3 manage.py startapp (app name)
+will create new folder with app
+
+INSIDE APP FOLDER:
+migrations:
+__init__: folder is a package
+admin: how admin looking at app will look like
+apps: configuration settings for app
+models: define classes/new types for modeling concepts in this app
+tests: write automated tests for app
+views: define what user see when navigate to certain page
+
+db.sqlite3: used to store data and database for sqlite
+only for small apps, if want proper database have to use
+sqlserver, mysql, oracle, postgres, etc
+
+To automatically set up a database:
+first put this in the overall products setting at INSTALLED_APPS list
+'products.apps.ProductsConfig'
+TERMINAL: python3 manage.py makemigrations
+will create python file in migrations folder. Django automatically adds 'id' attribute
+
+To migrate the pending migrations for the app into database:
+TERMINAL: python3 manage.py migrate
+Then gotta open db.sqlite3 database in database TO UPDATE DATABASE
+
+each table starts with prefix of what it belongs to (ex: auth_)
+for this example: have table "products.product" app.class
+
+ADMIN:
+/admin creates automatic admin app feature
+TERMINAL: python3 manage.py createsuperuser
+this is to create admin account.
+user: landonzheng
+email: lzhengbusiness@gmail.com
+pw: DaLLaSPenguins#28
+
+registering different stuff:
+in admin module in an app,
+admin.site.register(stuff_name)
+then can create different stuff and add to database on admin website.
+
+TEMPLATES FOR WEBSITES:
+using {% %} to write code. Can write python code inside
+end the informal code b/c html doesn't know indents.
+use {{}} for specifying variable name
+
+BOOTSTRAP:
+used to style. Have base.html
+in body, put {% block content %} and then {% endblock %}
+In other html templates, put {% extends 'base.html' %} at top
+and {% endblock %} at the end
+
+If want to make template central, do
+os.path.join(BASE_DIR, 'templates') inside the DIR list on the
+settings.py file in pyshop. and import os
